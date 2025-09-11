@@ -4,6 +4,7 @@ import 'dice_screen.dart'; // Imports the dice roller screen
 import 'package:dice_dungeons_six/gradient_background.dart'; // Imports reusable gradient background
 import 'package:dice_dungeons_six/screen/create_player_screen.dart';
 import 'package:dice_dungeons_six/model/player_model.dart';
+import 'package:dice_dungeons_six/screen/loot_generation_screen.dart';
 
 // The LandingScreen is now stateful to hold players created at runtime.
 class LandingScreen extends StatefulWidget {
@@ -113,6 +114,20 @@ class _LandingScreenState extends State<LandingScreen> {
               onTap: () {
                 Navigator.pop(context);
                 _goToCreatePlayerScreen(context);
+              },
+            ),
+            // Add this for Loot:
+            ListTile(
+              leading: const Icon(Icons.card_giftcard, color: Colors.white),
+              title: const Text('Loot', style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const LootGenerationScreen(),
+                  ),
+                );
               },
             ),
           ],
