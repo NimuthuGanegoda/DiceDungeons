@@ -59,7 +59,7 @@ class EnemyGenerationsScreen extends StatelessWidget {
         const SizedBox(width: 16),
         ElevatedButton(
           onPressed: enemyViewModel.generateRandomEnemy,
-          child: const Text("Generate Enemy"),
+          child: const Text("Random Enemy"),
         ),
       ],
     );

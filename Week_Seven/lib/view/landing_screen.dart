@@ -95,7 +95,7 @@ class _LandingScreenState extends State<LandingScreen> {
               title: const Text('Player List',
                   style: TextStyle(color: Colors.white)),
               onTap: () {
-                Navigator.pop(context); // close drawer
+                Navigator.pop(context);
                 _goToPlayerList(context);
               },
             ),
@@ -106,29 +106,6 @@ class _LandingScreenState extends State<LandingScreen> {
               onTap: () {
                 Navigator.pop(context);
                 _goToDiceScreen(context);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.person_add, color: Colors.white),
-              title: const Text('Create Player',
-                  style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.pop(context);
-                _goToCreatePlayerScreen(context);
-              },
-            ),
-            // Add this for Loot:
-            ListTile(
-              leading: const Icon(Icons.card_giftcard, color: Colors.white),
-              title: const Text('Loot', style: TextStyle(color: Colors.white)),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const LootGenerationScreen(),
-                  ),
-                );
               },
             ),
             ListTile(
@@ -143,6 +120,28 @@ class _LandingScreenState extends State<LandingScreen> {
                     builder: (_) => const EnemyGenerationsScreen(),
                   ),
                 );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.card_giftcard, color: Colors.white),
+              title: const Text('Loot', style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const LootGenerationScreen(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.person_add, color: Colors.white),
+              title: const Text('Create Player',
+                  style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pop(context);
+                _goToCreatePlayerScreen(context);
               },
             ),
           ],
