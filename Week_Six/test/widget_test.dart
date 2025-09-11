@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:dice_dungeons_five/screen/landing_screen.dart';
+import 'package:dice_dungeons_six/screen/landing_screen.dart';
 
 void main() {
   testWidgets('LandingScreen shows banner and drawer hint',
