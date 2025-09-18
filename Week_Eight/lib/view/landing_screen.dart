@@ -149,41 +149,59 @@ class _LandingScreenState extends State<LandingScreen> {
       ),
       backgroundColor: Colors.transparent, // Allows the gradient to show
       body: GradientBackground(
-        // Wraps content in a reusable gradient background
-        child: Column(
-          mainAxisAlignment:
-              MainAxisAlignment.start, // Align children at the top
-          children: [
-            const SizedBox(height: 60), // Spacer at the top
-            Image.asset(
-              'assets/images/icon.png',
-              height: 60,
-              fit: BoxFit.contain,
-            ),
-            const SizedBox(height: 20),
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Top row with hamburger on left and logo centered
+              Row(
+                children: [
+                  Builder(
+                    builder: (context) {
+                      return IconButton(
+                        icon: const Icon(Icons.menu, color: Colors.white),
+                        onPressed: () => Scaffold.of(context).openDrawer(),
+                      );
+                    },
+                  ),
+                  const Spacer(),
+                  Image.asset('assets/images/icon.png', height: 60),
+                  const Spacer(flex: 2),
+                ],
+              ),
 
-            // Hamburger icon to open the drawer using Builder for Scaffold context
-            Row(
-              children: [
-                Builder(
-                  builder: (context) {
-                    return IconButton(
-                      icon: const Icon(Icons.menu, color: Colors.white),
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer();
-                      },
-                    );
+              // Push the CTA to the bottom
+              const Spacer(),
+
+              // Start Battle button centered
+              Center(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: const Color(0xFF7B1FA2),
+                    shape: const StadiumBorder(),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 28,
+                      vertical: 12,
+                    ),
+                  ),
+                  onPressed: () {
+                    // TODO: wire this to your battle/encounter flow
                   },
+                  child: const Text('Start Battle'),
                 ),
-              ],
-            ),
+              ),
 
-            const SizedBox(height: 40),
-            const Text(
-              'Swipe or tap top-left to open menu',
-              style: TextStyle(color: Colors.white70),
-            ),
-          ],
+              const SizedBox(height: 12),
+              const Center(
+                child: Text(
+                  'Swipe or tap top-left to open menu',
+                  style: TextStyle(color: Colors.white70),
+                ),
+              ),
+              const SizedBox(height: 24),
+            ],
+          ),
         ),
       ),
     );

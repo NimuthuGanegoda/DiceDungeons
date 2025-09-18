@@ -8,10 +8,13 @@ class EnemyViewModel extends ChangeNotifier {
   int _enemyTier = 1;
   List _enemyList = [];
   Enemy? _selectedEnemy;
+  final List _addedEnemies = [];
 
   int get enemyTier => _enemyTier;
   List get enemyList => _enemyList;
   Enemy? get selectedEnemy => _selectedEnemy;
+  int get addedCount => _addedEnemies.length;
+  List get addedEnemies => List.unmodifiable(_addedEnemies);
 
   EnemyViewModel() {
     loadEnemyJson();
@@ -41,5 +44,13 @@ class EnemyViewModel extends ChangeNotifier {
       _selectedEnemy = _enemyList[randomIndex];
       notifyListeners();
     }
+  }
+
+  // Adds the currently selected enemy to a local collection. Returns true if added.
+  bool addCurrentEnemy() {
+    if (_selectedEnemy == null) return false;
+    _addedEnemies.add(_selectedEnemy!);
+    notifyListeners();
+    return true;
   }
 }

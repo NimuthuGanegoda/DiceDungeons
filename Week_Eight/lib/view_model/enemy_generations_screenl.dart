@@ -57,9 +57,31 @@ class EnemyGenerationsScreen extends StatelessWidget {
           onPressed: () => enemyViewModel.changeEnemyTier(1),
         ),
         const SizedBox(width: 16),
-        ElevatedButton(
-          onPressed: enemyViewModel.generateRandomEnemy,
-          child: const Text("Random Enemy"),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ElevatedButton(
+              onPressed: enemyViewModel.generateRandomEnemy,
+              child: const Text("Random Enemy"),
+            ),
+            const SizedBox(height: 8),
+            ElevatedButton(
+              onPressed: () {
+                final added = enemyViewModel.addCurrentEnemy();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      added
+                          ? 'Enemy added (${enemyViewModel.addedCount})'
+                          : 'No enemy to add yet',
+                    ),
+                    duration: const Duration(seconds: 1),
+                  ),
+                );
+              },
+              child: const Text("Add Enemy"),
+            ),
+          ],
         ),
       ],
     );
