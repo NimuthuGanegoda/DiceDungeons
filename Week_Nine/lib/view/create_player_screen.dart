@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 
 // Import the Player model so we can create new player instances
-import 'package:dice_dungeons_eight/model/player_model.dart';
+import 'package:dice_dungeons_nine/model/player_model.dart';
 
 // Import the custom gradient background widget
-import 'package:dice_dungeons_eight/gradient_background.dart';
+import 'package:dice_dungeons_nine/gradient_background.dart';
 
 // This screen allows the user to create a new player.
 // It's stateful because the form needs to store user input.
@@ -24,10 +24,10 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> {
   final _formKey = GlobalKey<FormState>();
 
   // These variables store the form data once saved
-  String _name = '';
-  String _className = '';
-  int _health = 10;
-  int _level = 1;
+  String name = '';
+  String className = '';
+  int health = 10;
+  int level = 1;
 
   // This function validates and saves the form, then creates a Player
   void _submitForm() {
@@ -38,10 +38,8 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> {
 
       // Create a new Player using the collected input
       final newPlayer = Player(
-        name: _name,
-        className: _className,
-        health: _health,
-        level: _level,
+        name: name,
+        className: className,
         imagePath: 'assets/images/player.png', // Static for now
       );
 
@@ -90,9 +88,8 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> {
                       ),
                     ),
                     style: const TextStyle(color: Colors.white),
-                    onSaved: (value) => _name = value!.trim(),
-                    validator: (value) =>
-                        value!.isEmpty ? 'Please enter a name' : null,
+                    onSaved: (value) => name = value!.trim(),
+                    validator: (value) => value!.isEmpty ? 'Please enter a name' : null,
                   ),
 
                   const SizedBox(height: 10),
@@ -107,9 +104,8 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> {
                       ),
                     ),
                     style: const TextStyle(color: Colors.white),
-                    onSaved: (value) => _className = value!.trim(),
-                    validator: (value) =>
-                        value!.isEmpty ? 'Please enter a class' : null,
+                    onSaved: (value) => className = value!.trim(),
+                    validator: (value) => value!.isEmpty ? 'Please enter a class' : null,
                   ),
 
                   const SizedBox(height: 10),
@@ -125,7 +121,7 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> {
                     ),
                     keyboardType: TextInputType.number,
                     style: const TextStyle(color: Colors.white),
-                    onSaved: (value) => _health = int.tryParse(value!) ?? 10,
+                    onSaved: (value) => health = int.tryParse(value!) ?? 10,
                   ),
 
                   const SizedBox(height: 10),
@@ -141,7 +137,7 @@ class _CreatePlayerScreenState extends State<CreatePlayerScreen> {
                     ),
                     keyboardType: TextInputType.number,
                     style: const TextStyle(color: Colors.white),
-                    onSaved: (value) => _level = int.tryParse(value!) ?? 1,
+                    onSaved: (value) => level = int.tryParse(value!) ?? 1,
                   ),
 
                   const SizedBox(height: 30),

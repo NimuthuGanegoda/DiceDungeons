@@ -43,10 +43,3 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-
-# Google Cloud SDK files (large binaries and archives)
-google-cloud-sdk/
-google-cloud-sdk-*.tar.gz
-*.tar.gz
-**/bin/anthoscli
-**/data/cli/gcloud.json

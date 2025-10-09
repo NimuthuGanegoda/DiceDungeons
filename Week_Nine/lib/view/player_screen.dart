@@ -13,15 +13,8 @@ class PlayerScreen extends StatefulWidget {
 }
 
 class _PlayerScreenState extends State<PlayerScreen> {
-  late int health;
-  late int level;
-
-  @override
-  void initState() {
-    super.initState();
-    health = widget.player.health;
-    level = widget.player.level;
-  }
+  int health = 10;
+  int level = 1;
 
   void increaseHealth() {
     setState(() {
@@ -55,36 +48,23 @@ class _PlayerScreenState extends State<PlayerScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Dice and Dungeons!',
-              style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
-            ),
+            Image.asset('assets/images/logo.png'),
             const SizedBox(height: 20),
             Image.asset(widget.player.imagePath, height: 200),
             const SizedBox(height: 20),
-            Text('Name: ${widget.player.name}',
-                style: const TextStyle(color: Colors.white)),
-            Text('Class: ${widget.player.className}',
-                style: const TextStyle(color: Colors.white)),
+            Text('Name: ${widget.player.name}', style: const TextStyle(color: Colors.white)),
+            Text('Class: ${widget.player.className}', style: const TextStyle(color: Colors.white)),
             const SizedBox(height: 10),
-            Text('Health: $health',
-                style: const TextStyle(color: Colors.white)),
+            Text('Health: $health', style: const TextStyle(color: Colors.white)),
             Text('Level: $level', style: const TextStyle(color: Colors.white)),
             const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton(
-                    onPressed: increaseHealth, child: const Text('HP+')),
-                ElevatedButton(
-                    onPressed: decreaseHealth, child: const Text('HP-')),
-                ElevatedButton(
-                    onPressed: increaseLevel, child: const Text('Lvl+')),
-                ElevatedButton(
-                    onPressed: decreaseLevel, child: const Text('Lvl-')),
+                ElevatedButton(onPressed: increaseHealth, child: const Text('HP+')),
+                ElevatedButton(onPressed: decreaseHealth, child: const Text('HP-')),
+                ElevatedButton(onPressed: increaseLevel, child: const Text('Lvl+')),
+                ElevatedButton(onPressed: decreaseLevel, child: const Text('Lvl-')),
               ],
             ),
             const SizedBox(height: 20),

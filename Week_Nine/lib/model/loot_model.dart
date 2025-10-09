@@ -1,4 +1,3 @@
-  
 // Represents a single loot item with name, class, level, and attribute.
 class LootItem {
   final String name;
@@ -16,7 +15,7 @@ class LootItem {
   });
 
   // Factory constructor to create from JSON
-  factory LootItem.fromJson(Map json) {
+  factory LootItem.fromJson(Map<String, dynamic> json) {
     return LootItem(
       name: json['name'],
       imagePath: json['imagePath'],
