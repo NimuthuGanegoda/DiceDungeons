@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:dice_dungeons_seven/view/landing_screen.dart';
+import 'package:dice_dungeons_nine/view/landing_screen.dart';
 
 void main() {
   testWidgets('LandingScreen shows banner and drawer hint',
       (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MaterialApp(
+    await tester.pumpWidget(MaterialApp(
       home: LandingScreen(),
     ));
 

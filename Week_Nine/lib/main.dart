@@ -1,4 +1,5 @@
 // Import the core Flutter Material library for UI elements like MaterialApp, Scaffold, etc.
+import 'package:dice_dungeons_nine/view_model/battle_view_model.dart';
 import 'package:flutter/material.dart';
 
 // Import the Provider package so we can inject and access shared ViewModels across screens, all todays magic is from here
@@ -14,7 +15,7 @@ import 'package:dice_dungeons_nine/view_model/enemy_view_model.dart';
 void main() {
   // runApp is the entry point that tells Flutter what widget tree to render
   runApp(
-    // MultiProvider lets us provide *multiple* ViewModels (shared data/state classes) to the entire app, which makes changes easy to manage
+    // MultiProvider lets us provide *multiple* ViewModels (shared data/state classes) to the entire app, this makes changes easy to manage
     // otherwise we have to do lots of message passing and messy stuff
     MultiProvider(
       providers: [
@@ -33,6 +34,10 @@ void main() {
         // This provides a single instance of EnemyViewModel to the widget tree
         ChangeNotifierProvider(
           create: (_) => EnemyViewModel(),
+        ),
+
+        ChangeNotifierProvider(
+          create: (_) => BattleViewModel(),
         ),
 
         // You can add more ViewModels here as your app grows, which will happen next week!
