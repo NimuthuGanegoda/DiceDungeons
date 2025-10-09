@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart'; // For ViewModel binding
-import 'package:dice_dungeons_eight/gradient_background.dart';
-import 'package:dice_dungeons_eight/view_model/loot_view_model.dart';
+import 'package:dice_dungeons_nine/gradient_background.dart';
+import 'package:dice_dungeons_nine/view_model/loot_view_model.dart';
 
-import 'package:dice_dungeons_eight/view_model/loot_model.dart';
+import 'package:dice_dungeons_nine/model/loot_model.dart';
 
 // This screen shows random loot that can be selected from a tiered loot pool. As it will change, it will need to be stateful
 class LootGenerationScreen extends StatelessWidget {

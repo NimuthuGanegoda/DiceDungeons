@@ -1,22 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:dice_dungeons_nine/model/player_model.dart';
-import 'package:dice_dungeons_nine/view/player_screen.dart';
+import '../model/player_model.dart';
+import 'player_screen.dart';
 import 'package:dice_dungeons_nine/gradient_background.dart';
 
 // This screen shows a list of players in a scrollable list.
 // Each player card can be tapped to navigate to their detail screen.
-// ignore: must_be_immutable
 class PlayerListScreen extends StatefulWidget {
-  // Define a list of Player objects to display in the ListView.
+  // List of Player objects provided by the caller (e.g., LandingScreen)
+  final List<Player> players;
 
-  List<Player> players;
-
-  PlayerListScreen({super.key, required this.players}); // Constructor takes the list
+  const PlayerListScreen({super.key, required this.players});
 
   @override
-  State<PlayerListScreen> createState() {
-    return _PlayerListScreenState();
-  }
+  State<PlayerListScreen> createState() => _PlayerListScreenState();
 }
 
 class _PlayerListScreenState extends State<PlayerListScreen> {
@@ -49,17 +45,18 @@ class _PlayerListScreenState extends State<PlayerListScreen> {
               Expanded(
                 // ListView.builder creates list items lazily (efficient for long lists).
                 child: ListView.builder(
-                  //  Flutter gives you access to the instance of the parent StatefulWidget via the widget property
-                  itemCount: widget.players.length, // Number of items in the list
+                  itemCount:
+                      widget.players.length, // Number of items in the list
                   itemBuilder: (context, index) {
                     // Each player is displayed inside a Card with a ListTile.
+                    final player = widget.players[index];
                     return Card(
-                      color: const Color.fromARGB(255, 165, 19, 112), // Dark red card background
+                      color: const Color.fromARGB(
+                          255, 165, 19, 112), // Dark red card background
                       child: ListTile(
                         // Show the player's name
                         title: Text(
-                          //  Flutter gives you access to the instance of the parent StatefulWidget via the widget property
-                          widget.players[index].name,
+                          player.name,
                           style: const TextStyle(color: Colors.white),
                         ),
                         // When the tile is tapped, navigate to the PlayerScreen
@@ -68,8 +65,8 @@ class _PlayerListScreenState extends State<PlayerListScreen> {
                             context,
                             MaterialPageRoute(
                               // Pass the tapped player object to PlayerScreen
-                              //  Flutter gives you access to the instance of the parent StatefulWidget via the widget property
-                              builder: (context) => PlayerScreen(player: widget.players[index]),
+                              builder: (context) =>
+                                  PlayerScreen(player: player),
                             ),
                           );
                         },

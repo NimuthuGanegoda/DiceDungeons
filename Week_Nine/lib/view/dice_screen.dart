@@ -1,3 +1,4 @@
+  
 // Import the Dart math library to use the Random class for dice rolls.
 import 'dart:math';
 
@@ -86,41 +87,51 @@ class _DiceScreenState extends State {
               style: TextStyle(color: Colors.white, fontSize: 20),
             ),
 
-            // const SizedBox(height: 20),
-            const Spacer(),
+            const SizedBox(height: 20),
 
-            // Dice images as clickable buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            // Dice roll buttons
+            Column(
               children: [
-                InkWell(
-                  onTap: rollD6,
-                  child: Image.asset(
-                    'assets/images/dice/d6/dice_${_numberWords[d6]}.png',
-                    height: 50,
-                    fit: BoxFit.contain,
-                  ),
+                OutlinedButton(
+                  onPressed: rollD6,
+                  child: const Text('D6'), // Roll 6-sided die
                 ),
-                InkWell(
-                  onTap: rollD20,
-                  child: Image.asset(
-                    'assets/images/dice/d20/dice_${_numberWords[d20]}.png',
-                    height: 100,
-                    fit: BoxFit.contain,
-                  ),
+                OutlinedButton(
+                  onPressed: rollD20,
+                  child: const Text('D20'), // Roll 20-sided die
                 ),
               ],
             ),
 
-            // const SizedBox(height: 20),
-            const Spacer(),
+            const SizedBox(height: 20),
 
-            // Back button
+            // Display dice images
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Show the current D6 image based on the rolled value
+                Image.asset(
+                  'assets/images/dice/d6/dice_${_numberWords[d6]}.png',
+                  height: 50, // Small size for D6
+                  fit: BoxFit.contain,
+                ),
+
+                // Show the current D20 image based on the rolled value
+                Image.asset(
+                  'assets/images/dice/d20/dice_${_numberWords[d20]}.png',
+                  height: 100, // Larger size for D20
+                  fit: BoxFit.contain,
+                )
+              ],
+            ),
+
+            const SizedBox(height: 20),
+
+            // Back button to return to the previous screen
             ElevatedButton(
               onPressed: () => Navigator.pop(context),
               child: const Text('Back'),
             ),
-            const SizedBox(height: 40),
           ],
         ),
       ),

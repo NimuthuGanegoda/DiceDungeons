@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:dice_dungeons_nine/view/player_list_screen.dart'; // Imports the player list screen
-import 'package:dice_dungeons_nine/view/dice_screen.dart'; // Imports the dice roller screen
-import 'package:dice_dungeons_nine/view/create_player_screen.dart'; // Imports the create player form screen
-import 'package:dice_dungeons_nine/view/loot_generation_screen.dart'; // Imports the loot screen
-import 'package:dice_dungeons_nine/view/enemy_generation_screen.dart'; // Imports the enemy screen
-import 'package:dice_dungeons_nine/model/player_model.dart'; // Imports Player model
-import 'package:dice_dungeons_nine/gradient_background.dart'; // Imports reusable gradient background
-import 'package:dice_dungeons_nine/view/turn_order_list.dart';
+import 'package:dice_dungeons_eight/view/player_list_screen.dart'; // Imports the player list screen
+import 'dice_screen.dart'; // Imports the dice roller screen
+import 'package:dice_dungeons_eight/gradient_background.dart'; // Imports reusable gradient background
+import 'package:dice_dungeons_eight/view/create_player_screen.dart';
+import 'package:dice_dungeons_eight/model/player_model.dart';
+import 'package:dice_dungeons_eight/view/loot_generation_screen.dart';
+import 'package:dice_dungeons_eight/view_model/enemy_generations_screenl.dart';
 
-// The LandingScreen is a stateless widget and serves as the app's home page.
+// The LandingScreen is now stateful to hold players created at runtime.
 class LandingScreen extends StatefulWidget {
   const LandingScreen({super.key});
 
@@ -17,64 +16,59 @@ class LandingScreen extends StatefulWidget {
 }
 
 class _LandingScreenState extends State<LandingScreen> {
-  List<Player> players = []; // Maintain list of players locally
+  // Internal list to store players created from the form.
+  final List<Player> _players = [
+    Player(
+      name: 'Player One',
+      className: 'Warrior',
+      health: 100,
+      level: 5,
+      imagePath: 'assets/images/player.png',
+    ),
+    Player(
+      name: 'BIG BOY',
+      className: 'Mage',
+      health: 70,
+      level: 4,
+      imagePath: 'assets/images/player_two.png',
+    ),
+  ];
 
-  // This method handles navigation to the Player List screen
+  // This method handles navigation to the Player List screen.
   void _goToPlayerList(BuildContext context) {
-    Navigator.pop(context); // Close the drawer before navigating
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => PlayerListScreen(players: players), // Pass the current player list
+        builder: (_) => PlayerListScreen(
+          players: _players,
+        ), // Pushes the player list with current players
       ),
     );
   }
 
-  // This method handles navigation to the Dice Roller screen
+  // This method handles navigation to the Dice Roller screen.
   void _goToDiceScreen(BuildContext context) {
-    Navigator.pop(context); // Close the drawer before navigating
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const DiceScreen(),
+        builder: (_) =>
+            const DiceScreen(), // Pushes the dice screen onto the stack
       ),
     );
   }
 
-  // This method handles navigation to the Loot Generation Screen
-  void _goToLootGenerationScreen(BuildContext context) {
-    Navigator.pop(context); // Close the drawer before navigating
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const LootGenerationScreen(),
-      ),
-    );
-  }
-
-  // This method handles navigation to the enemy Generation Screen
-  void _goToEnemyGenerationScreen(BuildContext context) {
-    Navigator.pop(context); // Close the drawer before navigating
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const EnemyGenerationScreen(),
-      ),
-    );
-  }
-
-  // This method handles navigation to the Create Player screen and captures the result
+  // Navigate to CreatePlayerScreen and add the returned player to the list.
   Future<void> _goToCreatePlayerScreen(BuildContext context) async {
-    Navigator.pop(context); // Close the drawer first
     final newPlayer = await Navigator.push<Player>(
       context,
-      MaterialPageRoute(builder: (_) => const CreatePlayerScreen()),
+      MaterialPageRoute(
+        builder: (_) => const CreatePlayerScreen(),
+      ),
     );
 
-    // If a player was returned (not null), update the player list
     if (newPlayer != null) {
       setState(() {
-        players.add(newPlayer);
+        _players.add(newPlayer);
       });
     }
   }
@@ -82,115 +76,132 @@ class _LandingScreenState extends State<LandingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent, // Allows the gradient to show
-
-      // Add a navigation drawer to allow side-swipe and menu access
       drawer: Drawer(
-        backgroundColor: const Color.fromARGB(255, 247, 42, 76), // Match app style
-        child: GradientBackground(
-          child: ListView(
-            padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 10),
-            children: [
-              Image.asset('assets/images/logo.png'),
-              // const Text(
-              //   'Dice and Dungeons!',
-              //   style: TextStyle(color: Colors.white, fontSize: 24),
-              //   textAlign: TextAlign.center,
-              // ),
-              const SizedBox(height: 20),
-
-              // Player List
-              ListTile(
-                leading: const Icon(Icons.group, color: Colors.white),
-                title: const Text('Player List', style: TextStyle(color: Colors.white)),
-                onTap: () => _goToPlayerList(context),
+        backgroundColor: const Color.fromARGB(255, 165, 19, 112),
+        child: ListView(
+          padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 10),
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Image.asset(
+                'assets/images/icon.png',
+                height: 60,
+                fit: BoxFit.contain,
               ),
-
-              // Dice Roller
-              ListTile(
-                leading: const Icon(Icons.casino, color: Colors.white),
-                title: const Text('Dice Roller', style: TextStyle(color: Colors.white)),
-                onTap: () => _goToDiceScreen(context),
-              ),
-
-              // Loot Generation screen
-              ListTile(
-                leading: const Icon(Icons.business_center, color: Colors.white),
-                title: const Text('Loot', style: TextStyle(color: Colors.white)),
-                onTap: () => _goToLootGenerationScreen(context),
-              ),
-
-              // Loot Generation screen
-              ListTile(
-                leading: const Icon(Icons.groups_2, color: Colors.white),
-                title: const Text('Enemy', style: TextStyle(color: Colors.white)),
-                onTap: () => _goToEnemyGenerationScreen(context),
-              ),
-
-              // Create Player
-              ListTile(
-                leading: const Icon(Icons.add, color: Colors.white),
-                title: const Text('Create Player', style: TextStyle(color: Colors.white)),
-                onTap: () => _goToCreatePlayerScreen(context), // Now captures return value
-              ),
-            ],
-          ),
+            ),
+            const Divider(color: Colors.white24),
+            ListTile(
+              leading: const Icon(Icons.group, color: Colors.white),
+              title: const Text('Player List',
+                  style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pop(context);
+                _goToPlayerList(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.casino, color: Colors.white),
+              title: const Text('Dice Roller',
+                  style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pop(context);
+                _goToDiceScreen(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.bug_report, color: Colors.white),
+              title:
+                  const Text('Enemies', style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const EnemyGenerationsScreen(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.card_giftcard, color: Colors.white),
+              title: const Text('Loot', style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const LootGenerationScreen(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.person_add, color: Colors.white),
+              title: const Text('Create Player',
+                  style: TextStyle(color: Colors.white)),
+              onTap: () {
+                Navigator.pop(context);
+                _goToCreatePlayerScreen(context);
+              },
+            ),
+          ],
         ),
       ),
-
-      // The main content of the landing screen
+      backgroundColor: Colors.transparent, // Allows the gradient to show
       body: GradientBackground(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start, // Align children at the top
-          children: [
-            const SizedBox(height: 60), // Spacer at the top
-
-            Image.asset('assets/images/logo.png'),
-
-            // const Text(
-            //   'Dice and Dungeons!', // App title
-            //   style: TextStyle(
-            //     fontSize: 24,
-            //     color: Colors.white, // White text for contrast
-            //   ),
-            // ),
-
-            Row(
-              children: [
-                Builder(
-                  builder: (context) {
-                    return IconButton(
-                      icon: const Icon(Icons.menu, color: Colors.white), // White hamburger icon
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer(); // This will now work
-                      },
-                    );
-                  },
-                ),
-              ],
-            ),
-
-            Expanded(
-              // This allows TurnOrderList to grow and take all available space
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: TurnOrderList(),
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Top row with hamburger on left and logo centered
+              Row(
+                children: [
+                  Builder(
+                    builder: (context) {
+                      return IconButton(
+                        icon: const Icon(Icons.menu, color: Colors.white),
+                        onPressed: () => Scaffold.of(context).openDrawer(),
+                      );
+                    },
+                  ),
+                  const Spacer(),
+                  Image.asset('assets/images/icon.png', height: 60),
+                  const Spacer(flex: 2),
+                ],
               ),
-            ),
 
-            const SizedBox(height: 20), // Space between title and buttons
-            // const Spacer(),
+              // Push the CTA to the bottom
+              const Spacer(),
 
-            ElevatedButton(
-              onPressed: () => {},
-              child: const Text("Start Battle"),
-            ),
-            const Text(
-              'Swipe or tap top-left to open menu',
-              style: TextStyle(color: Colors.white70),
-            ),
-            const SizedBox(height: 50),
-          ],
+              // Start Battle button centered
+              Center(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: const Color(0xFF7B1FA2),
+                    shape: const StadiumBorder(),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 28,
+                      vertical: 12,
+                    ),
+                  ),
+                  onPressed: () {
+                    // TODO: wire this to your battle/encounter flow
+                  },
+                  child: const Text('Start Battle'),
+                ),
+              ),
+
+              const SizedBox(height: 12),
+              const Center(
+                child: Text(
+                  'Swipe or tap top-left to open menu',
+                  style: TextStyle(color: Colors.white70),
+                ),
+              ),
+              const SizedBox(height: 24),
+            ],
+          ),
         ),
       ),
     );
