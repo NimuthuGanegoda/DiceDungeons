@@ -21,21 +21,26 @@ class BattleViewModel extends ChangeNotifier {
   // Remove a participant from the list by index.
   // Used when a participant is dismissed (e.g., swiped away).
   void removeParticipant(int index) {
-    _participants.removeAt(index);
-    notifyListeners(); // Trigger a UI rebuild
+    if (index >= 0 && index < _participants.length) {
+      _participants.removeAt(index);
+      notifyListeners(); // Trigger a UI rebuild
+    }
   }
 
   // Change a participant's health by a given amount (delta).
   // If health drops to 0, the participant is automatically removed.
   void changeHealth(int index, int delta) {
-    _participants[index].health += delta;
+    if (index >= 0 && index < _participants.length) {
+      _participants[index].health += delta;
 
-    // Automatically remove participant if their health reaches 0
-    if (_participants[index].health == 0) {
-      removeParticipant(index);
+      // Automatically remove participant if their health reaches 0
+      if (_participants[index].health <= 0) {
+        _participants[index].health = 0;
+        removeParticipant(index);
+      } else {
+        notifyListeners(); // Trigger a UI rebuild
+      }
     }
-
-    notifyListeners(); // Trigger a UI rebuild
   }
 
   // Randomly shuffle the order of all participants in the list.
@@ -49,5 +54,14 @@ class BattleViewModel extends ChangeNotifier {
   void clearBattle() {
     _participants.clear();
     notifyListeners(); // Trigger a UI rebuild
+  }
+
+  // Remove a participant by reference (safer with Dismissible/ObjectKey)
+  void removeParticipantRef(BattleParticipant participant) {
+    final idx = _participants.indexOf(participant);
+    if (idx != -1) {
+      _participants.removeAt(idx);
+      notifyListeners();
+    }
   }
 }

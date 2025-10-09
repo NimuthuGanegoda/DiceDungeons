@@ -11,11 +11,14 @@ class EnemyViewModel extends ChangeNotifier {
   int _enemyTier = 1; // The currently selected enemy tier (1, 2, or 3)
   List<EnemyItem> _enemyList = []; // List of enemy items loaded from JSON
   EnemyItem? _selectedEnemy; // The currently displayed enemy
+  final List<EnemyItem> _addedEnemies = []; // Enemies added to a temporary list
 
   // Public getters to allow the UI to read values from the ViewModel
   int get enemyTier => _enemyTier;
   List<EnemyItem> get enemyList => _enemyList;
   EnemyItem? get selectedEnemy => _selectedEnemy;
+  int get addedCount => _addedEnemies.length;
+  List<EnemyItem> get addedEnemies => List.unmodifiable(_addedEnemies);
 
   // Constructor that loads JSON on creation and picks a random enemy to show immediately
   EnemyViewModel() {
@@ -58,6 +61,11 @@ class EnemyViewModel extends ChangeNotifier {
     }
   }
 
-// Select a random enemy from the list
-  void addEnemy() {}
+  // Add the currently selected enemy to the local added list
+  bool addCurrentEnemy() {
+    if (_selectedEnemy == null) return false;
+    _addedEnemies.add(_selectedEnemy!);
+    notifyListeners();
+    return true;
+  }
 }

@@ -46,16 +46,29 @@ class EnemyGenerationScreen extends StatelessWidget {
     void addEnemy() {
       final enemyVM = Provider.of<EnemyViewModel>(context, listen: false);
       final battleVM = Provider.of<BattleViewModel>(context, listen: false);
-
       final selected = enemyVM.selectedEnemy;
 
       if (selected != null) {
-        battleVM.addEnemy(
-          BattleParticipant(
-            name: selected.name,
-            imagePath: selected.imagePath,
-            attack: selected.attackStrength,
-            health: selected.level * 2, // or whatever formula you want
+        // Map EnemyItem to BattleParticipant
+        final participant = BattleParticipant(
+          name: selected.name,
+          imagePath: selected.imagePath,
+          attack: selected.attackStrength,
+          health: (selected.level * 5).clamp(1, 999),
+        );
+        battleVM.addEnemy(participant);
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Added ${selected.name} to battle'),
+            duration: const Duration(milliseconds: 800),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Generate an enemy first'),
+            duration: Duration(milliseconds: 800),
           ),
         );
       }

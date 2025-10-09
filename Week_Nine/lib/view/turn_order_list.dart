@@ -15,8 +15,10 @@ class TurnOrderList extends StatelessWidget {
         final participant = battleViewModel.participants[index];
 
         return Dismissible(
-          key: Key(participant.name + index.toString()),
-          onDismissed: (_) => battleViewModel.removeParticipant(index),
+          key: ObjectKey(participant),
+          onDismissed: (_) {
+            battleViewModel.removeParticipantRef(participant);
+          },
           // background: Container(color: Colors.red),
           child: Card(
             shadowColor: Colors.black,
