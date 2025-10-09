@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:dice_dungeons_eight/gradient_background.dart';
-import 'package:dice_dungeons_eight/view_model/enemy_view_model.dart';
+import 'package:dice_dungeons_nine/gradient_background.dart';
+import 'package:dice_dungeons_nine/view_model/enemy_view_model.dart';
 
 class EnemyGenerationsScreen extends StatelessWidget {
   const EnemyGenerationsScreen({super.key});
