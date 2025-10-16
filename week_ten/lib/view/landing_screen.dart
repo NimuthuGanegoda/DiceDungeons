@@ -7,6 +7,7 @@ import 'package:dice_dungeons_ten/view/enemy_generation_screen.dart'; // Imports
 import 'package:dice_dungeons_ten/model/player_model.dart'; // Imports Player model
 import 'package:dice_dungeons_ten/gradient_background.dart'; // Imports reusable gradient background
 import 'package:dice_dungeons_ten/view/turn_order_list.dart';
+import 'package:dice_dungeons_ten/view/battle_log_screen.dart'; // Import your new screen
 
 // The LandingScreen is a stateless widget and serves as the app's home page.
 class LandingScreen extends StatefulWidget {
@@ -155,15 +156,29 @@ class _LandingScreenState extends State<LandingScreen> {
             //   ),
             // ),
 
+            // Top bar with hamburger on the left and battle log button on the right
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
+                // Hamburger Menu Icon
                 Builder(
                   builder: (context) {
                     return IconButton(
-                      icon: const Icon(Icons.menu, color: Colors.white), // White hamburger icon
+                      icon: const Icon(Icons.menu, color: Colors.white),
                       onPressed: () {
-                        Scaffold.of(context).openDrawer(); // This will now work
+                        Scaffold.of(context).openDrawer();
                       },
+                    );
+                  },
+                ),
+
+                // Battle Log Icon Button
+                IconButton(
+                  icon: const Icon(Icons.description, color: Colors.white),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const BattleLogScreen()),
                     );
                   },
                 ),

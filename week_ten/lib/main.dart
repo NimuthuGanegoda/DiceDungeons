@@ -1,5 +1,6 @@
 // Import the core Flutter Material library for UI elements like MaterialApp, Scaffold, etc.
 import 'package:dice_dungeons_ten/view_model/battle_view_model.dart';
+import 'package:dice_dungeons_ten/view_model/battle_log_view_model.dart';
 import 'package:flutter/material.dart';
 
 // Import the Provider package so we can inject and access shared ViewModels across screens, all todays magic is from here
@@ -38,6 +39,10 @@ void main() {
 
         ChangeNotifierProvider(
           create: (_) => BattleViewModel(),
+        ),
+
+        ChangeNotifierProvider(
+          create: (_) => BattleLogViewModel(),
         ),
 
         // You can add more ViewModels here as your app grows, which will happen next week!
