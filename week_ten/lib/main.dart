@@ -1,6 +1,6 @@
 // Import the core Flutter Material library for UI elements like MaterialApp, Scaffold, etc.
-import 'package:dice_dungeons_ten/view_model/battle_view_model.dart';
 import 'package:dice_dungeons_ten/view_model/battle_log_view_model.dart';
+import 'package:dice_dungeons_ten/view_model/battle_view_model.dart';
 import 'package:flutter/material.dart';
 
 // Import the Provider package so we can inject and access shared ViewModels across screens, all todays magic is from here
@@ -12,25 +12,27 @@ import 'package:dice_dungeons_ten/view/landing_screen.dart';
 // Import the ViewModels, these hold all the business logic and shared app state
 import 'package:dice_dungeons_ten/view_model/loot_view_model.dart';
 import 'package:dice_dungeons_ten/view_model/enemy_view_model.dart';
+import 'package:geolocator/geolocator.dart';
 
-void main() {
-  // runApp is the entry point that tells Flutter what widget tree to render
-  runApp(
-    // MultiProvider lets us provide *multiple* ViewModels (shared data/state classes) to the entire app, this makes changes easy to manage
-    // otherwise we have to do lots of message passing and messy stuff
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // required before using async or platform cells
+
+
+LocationPermission permission = await Geolocator.checkPermission(
+if (permission == LocationPermission.denied) {
+  permission = await Geolocator.requestPermission();
+}
+if (permission == LocationPermission.deniedForever){
+)
+
+
+runApp(
     MultiProvider(
       providers: [
         // This provides a single instance of LootViewModel to the widget tree
         ChangeNotifierProvider(
           create: (_) => LootViewModel(),
         ),
-
-        // (_) => LootViewModel() is short hand for the below
-        // ChangeNotifierProvider(
-        //   create: (BuildContext context) {
-        //     return MyViewModel();
-        //   },
-        // )
 
         // This provides a single instance of EnemyViewModel to the widget tree
         ChangeNotifierProvider(
@@ -44,7 +46,6 @@ void main() {
         ChangeNotifierProvider(
           create: (_) => BattleLogViewModel(),
         ),
-
         // You can add more ViewModels here as your app grows, which will happen next week!
         // e.g. ChangeNotifierProvider(create: (_) => PlayerViewModel()), etc.
       ],
