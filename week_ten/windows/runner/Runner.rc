@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "week_ten" "\0"
+            VALUE "FileDescription", "dice_dungeons_two" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "week_ten" "\0"
+            VALUE "InternalName", "dice_dungeons_two" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "week_ten.exe" "\0"
-            VALUE "ProductName", "week_ten" "\0"
+            VALUE "OriginalFilename", "dice_dungeons_two.exe" "\0"
+            VALUE "ProductName", "dice_dungeons_two" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

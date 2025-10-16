@@ -1,4 +1,4 @@
-package com.example.week_ten
+package com.example.dice_dungeons_two
 
 import io.flutter.embedding.android.FlutterActivity
 
