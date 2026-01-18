@@ -1,0 +1,29 @@
+mutation CreateNewCharacter($userId: UUID!, $class: String!, $gameSystem: String!, $level: Int!, $name: String!) @auth(level: USER) {
+  character_insert(data: {userId: $userId, class: $class, gameSystem: $gameSystem, level: $level, name: $name, createdAt_expr: "request.time"})
+}
+
+query GetCharacterById($id: UUID!) @auth(level: USER) {
+  character(id: $id) {
+    id
+    name
+    class
+    level
+    gameSystem
+    userId
+  }
+}
+
+mutation UpdateCharacterNotes($id: UUID!, $notes: String) @auth(level: USER) {
+  character_update(id: $id, data: {notes: $notes})
+}
+
+query ListPublicCustomContent @auth(level: PUBLIC, insecureReason: "This operation is safe to expose to the public") {
+  customContents(where: {isPublic: {eq: true}}) {
+    id
+    name
+    description
+    imageUrl
+    type
+    stats
+  }
+}

@@ -1,0 +1,73 @@
+type User @table {
+  displayName: String!
+  createdAt: Timestamp!
+  email: String
+  photoUrl: String
+}
+
+type Character @table {
+  user: User!
+  name: String!
+  gameSystem: String!
+  level: Int!
+  class: String!
+  createdAt: Timestamp!
+  race: String
+  background: String
+  alignment: String
+  imageUrl: String
+  notes: String
+}
+
+type GameSession @table {
+  user: User!
+  character: Character
+  sessionDate: Date!
+  title: String!
+  createdAt: Timestamp!
+  summary: String
+  participants: [String]
+  campaignName: String
+}
+
+type CustomContent @table {
+  user: User!
+  name: String!
+  type: String!
+  isPublic: Boolean!
+  createdAt: Timestamp!
+  description: String
+  stats: String
+  imageUrl: String
+}
+
+type CharacterItem @table {
+  character: Character!
+  customContent: CustomContent
+  name: String!
+  quantity: Int!
+  createdAt: Timestamp!
+  description: String
+  type: String
+}
+
+type CharacterSpell @table {
+  character: Character!
+  customContent: CustomContent
+  name: String!
+  level: Int!
+  createdAt: Timestamp!
+  description: String
+  castingTime: String
+  range: String
+  components: String
+  duration: String
+}
+
+type CharacterAbility @table {
+  character: Character!
+  name: String!
+  createdAt: Timestamp!
+  description: String
+  type: String
+}

@@ -1,0 +1,86 @@
+{
+    "tier1": [
+      {
+        "name": "Human Bandit",
+        "class": "Human",
+        "level": 2,
+        "attackStrength": 1,
+        "imagePath": "assets/images/enemies/1/human.png"
+      },
+      {
+        "name": "Human Thief",
+        "class": "Human",
+        "level": 1,
+        "attackStrength": 1,
+        "imagePath": "assets/images/enemies/1/human.png"
+      },
+      {
+        "name": "Undead Minion",
+        "class": "Undead",
+        "level": 1,
+        "attackStrength": 1,
+        "imagePath": "assets/images/enemies/1/undead.png"
+      },
+      {
+        "name": "Undead Grunt",
+        "class": "Undead",
+        "level": 2,
+        "attackStrength": 2,
+        "imagePath": "assets/images/enemies/1/undead.png"
+      }
+    ],
+    "tier2": [
+      {
+        "name": "Skeleton Warrior",
+        "class": "Skeleton",
+        "level": 2,
+        "attackStrength": 3,
+        "imagePath": "assets/images/enemies/2/skeleton.png"
+      },
+      {
+        "name": "Skeleton Archer",
+        "class": "Skeleton",
+        "level": 2,
+        "attackStrength": 2,
+        "imagePath": "assets/images/enemies/2/skeleton.png"
+      },
+      {
+        "name": "Undead Soldier",
+        "class": "Undead",
+        "level": 2,
+        "attackStrength": 2,
+        "imagePath": "assets/images/enemies/2/undead_soldier.png"
+      },
+      {
+        "name": "Zombie",
+        "class": "Undead",
+        "level": 2,
+        "attackStrength": 2,
+        "imagePath": "assets/images/enemies/2/zombie.png"
+      }
+    ],
+    "tier3": [
+      {
+        "name": "Fish Abomination",
+        "class": "Mutant",
+        "level": 3,
+        "attackStrength": 4,
+        "imagePath": "assets/images/enemies/3/fish_abomination.png"
+      },
+      {
+        "name": "Flame Boss",
+        "class": "Boss",
+        "level": 3,
+        "attackStrength": 5,
+        "imagePath": "assets/images/enemies/3/flame_boss.png"
+      },
+      {
+        "name": "Undead Brute",
+        "class": "Undead",
+        "level": 3,
+        "attackStrength": 36,
+        "imagePath": "assets/images/enemies/3/undead_brute.png"
+      }
+    ]
+  }
+  

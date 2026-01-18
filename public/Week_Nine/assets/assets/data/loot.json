@@ -1,0 +1,156 @@
+{
+    "tier1": [
+      {
+        "name": "Bad Apple",
+        "class": "Consumable",
+        "level": 1,
+        "attribute": "Poison",
+        "imagePath": "assets/images/loot/1/bad_apple.png"
+      },
+      {
+        "name": "Fish",
+        "class": "Consumable",
+        "level": 1,
+        "attribute": "Heal",
+        "imagePath": "assets/images/loot/1/fish.png"
+      },
+      {
+        "name": "Green Slime",
+        "class": "Enemy Drop",
+        "level": 1,
+        "attribute": "Acid",
+        "imagePath": "assets/images/loot/1/green_slime.png"
+      },
+      {
+        "name": "Minor Health Potion",
+        "class": "Potion",
+        "level": 1,
+        "attribute": "Heal",
+        "imagePath": "assets/images/loot/1/minor_health.png"
+      },
+      {
+        "name": "Wood Knife",
+        "class": "Weapon",
+        "level": 1,
+        "attribute": "Slash",
+        "imagePath": "assets/images/loot/1/wood_knife.png"
+      },
+      {
+        "name": "Wood Shield",
+        "class": "Armor",
+        "level": 1,
+        "attribute": "Block",
+        "imagePath": "assets/images/loot/1/wood_sheild.png"
+      },
+      {
+        "name": "Wood Spear",
+        "class": "Weapon",
+        "level": 1,
+        "attribute": "Pierce",
+        "imagePath": "assets/images/loot/1/wood_spear.png"
+      },
+      {
+        "name": "Wood Sword",
+        "class": "Weapon",
+        "level": 1,
+        "attribute": "Slash",
+        "imagePath": "assets/images/loot/1/wood_sword.png"
+      }
+    ],
+    "tier2": [
+      {
+        "name": "Major Health Potion",
+        "class": "Potion",
+        "level": 2,
+        "attribute": "Heal",
+        "imagePath": "assets/images/loot/2/major_health.png"
+      },
+      {
+        "name": "Metal Axe",
+        "class": "Weapon",
+        "level": 2,
+        "attribute": "Slash",
+        "imagePath": "assets/images/loot/2/metal_axe.png"
+      },
+      {
+        "name": "Metal Hammer",
+        "class": "Weapon",
+        "level": 2,
+        "attribute": "Blunt",
+        "imagePath": "assets/images/loot/2/metal_hammer.png"
+      },
+      {
+        "name": "Metal Shield",
+        "class": "Armor",
+        "level": 2,
+        "attribute": "Block",
+        "imagePath": "assets/images/loot/2/metal_shield.png"
+      },
+      {
+        "name": "Metal Sword",
+        "class": "Weapon",
+        "level": 2,
+        "attribute": "Slash",
+        "imagePath": "assets/images/loot/2/metal_sword.png"
+      }
+    ],
+    "tier3": [
+      {
+        "name": "Fire Arrows",
+        "class": "Weapon",
+        "level": 3,
+        "attribute": "Fire",
+        "imagePath": "assets/images/loot/3/fire_arrows.png"
+      },
+      {
+        "name": "Golden Axe",
+        "class": "Weapon",
+        "level": 3,
+        "attribute": "Slash",
+        "imagePath": "assets/images/loot/3/golden_axe.png"
+      },
+      {
+        "name": "Jason's Mask",
+        "class": "Armor",
+        "level": 3,
+        "attribute": "Fear",
+        "imagePath": "assets/images/loot/3/jasons_mask.png"
+      },
+      {
+        "name": "King's Helmet",
+        "class": "Armor",
+        "level": 3,
+        "attribute": "Leadership",
+        "imagePath": "assets/images/loot/3/kings_helmet.png"
+      },
+      {
+        "name": "Magic Bow",
+        "class": "Weapon",
+        "level": 3,
+        "attribute": "Arcane",
+        "imagePath": "assets/images/loot/3/magic_bow.png"
+      },
+      {
+        "name": "Poison Knife",
+        "class": "Weapon",
+        "level": 3,
+        "attribute": "Poison",
+        "imagePath": "assets/images/loot/3/poison_knife.png"
+      },
+      {
+        "name": "Royal Shield",
+        "class": "Armor",
+        "level": 3,
+        "attribute": "Royal Guard",
+        "imagePath": "assets/images/loot/3/royal_shield.png"
+      },
+      {
+        "name": "Turtle Shield",
+        "class": "Armor",
+        "level": 3,
+        "attribute": "Defense",
+        "imagePath": "assets/images/loot/3/turtle_shield.png"
+      }
+    ]
+  }
+  

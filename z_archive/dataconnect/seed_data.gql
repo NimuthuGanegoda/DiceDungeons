@@ -1,0 +1,34 @@
+mutation CreateSeedData @transaction @auth(level: USER, insecureReason: "This operation is safe to expose to all logged in users.") {
+  user_insertMany(data: [
+    {
+      id: "550e8400-e29b-41d4-a716-446655440000",
+      displayName: "demouser1",
+      createdAt: "2024-01-01T00:00:00Z"
+    },
+    {
+      id: "550e8400-e29b-41d4-a716-446655440001",
+      displayName: "demouser2",
+      createdAt: "2024-01-01T00:00:00Z"
+    }
+  ])
+  character_insertMany(data: [
+    {
+      id: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+      userId: "550e8400-e29b-41d4-a716-446655440000",
+      name: "Demo Character 1",
+      class: "Fighter",
+      level: 3,
+      createdAt: "2024-01-05T00:00:00Z",
+      gameSystem: "D&D 5e"
+    },
+    {
+      id: "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a12",
+      userId: "550e8400-e29b-41d4-a716-446655440001",
+      name: "Demo Character 2",
+      class: "Wizard",
+      level: 5,
+      createdAt: "2024-01-07T00:00:00Z",
+      gameSystem: "Pathfinder 2e"
+    }
+  ])
+}
